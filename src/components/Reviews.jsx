@@ -8,12 +8,12 @@ const reviews = [
   },
   {
     avatar: 'images/student1.jpg',
-    name: 'Shivam',
+    name: 'Umair',
     comment: 'I never thought I could make candles this professional. The 12-day structure is perfect—easy to follow but deeply detailed where it matters.'
   },
   {
     avatar: 'images/student3.jpg',
-    name: 'Shivani',
+    name: 'Priyanka',
     comment: "The scent blending section is a masterclass in itself. I've finally found my signature studio fragrance. Highly recommended!"
   },
 ];
