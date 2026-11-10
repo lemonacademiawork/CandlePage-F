@@ -18,8 +18,9 @@ export default function Navbar({ onOpenModal }) {
           <a className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#course">Course</a>
           <a className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#reviews">Reviews</a>
           <a className="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#faq">FAQ</a>
-          <button onClick={() => onOpenModal('discovery')} className="bg-primary-container text-on-primary-container px-6 py-2 rounded-full font-label-md text-label-md hover:scale-105 transition-all active:scale-95 btn-primary-shadow">
-            Join Now
+          <button onClick={() => onOpenModal('masterclass')} className="bg-primary text-white font-bold px-6 py-2 rounded-full font-label-md text-label-md hover:scale-105 transition-all active:scale-95 btn-primary-shadow flex items-center gap-1.5">
+            <span>Enroll Now</span>
+            <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full">₹49</span>
           </button>
         </div>
         <button
@@ -37,8 +38,9 @@ export default function Navbar({ onOpenModal }) {
           <a onClick={() => setIsMobileOpen(false)} className="block font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#course">Course</a>
           <a onClick={() => setIsMobileOpen(false)} className="block font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#reviews">Reviews</a>
           <a onClick={() => setIsMobileOpen(false)} className="block font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#faq">FAQ</a>
-          <button onClick={() => { setIsMobileOpen(false); onOpenModal('discovery'); }} className="w-full bg-primary-container text-on-primary-container py-3 rounded-full font-label-md text-label-md btn-primary-shadow">
-            Join Now
+          <button onClick={() => { setIsMobileOpen(false); onOpenModal('masterclass'); }} className="w-full bg-primary text-white font-bold py-3 rounded-full font-label-md text-label-md btn-primary-shadow flex items-center justify-center gap-2">
+            <span>Enroll Now</span>
+            <span className="text-xs bg-white/20 px-2 py-0.5 rounded-full">₹49</span>
           </button>
         </div>
       )}

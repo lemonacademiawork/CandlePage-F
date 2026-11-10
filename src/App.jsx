@@ -8,11 +8,10 @@ import Certificate from './components/Certificate';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import BookingModal from './components/BookingModal';
-import VideoSection from './components/VideoSection';
 
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTier, setSelectedTier] = useState('discovery');
+  const [selectedTier, setSelectedTier] = useState('masterclass');
 
   // Trigger scroll reveal animations
   useEffect(() => {
@@ -71,7 +70,6 @@ export default function App() {
         <Hero onOpenModal={handleOpenModal} />
         <CourseModules onOpenModal={handleOpenModal} />
         <WhyJoin />
-        <VideoSection />
         <Reviews />
         <Certificate />
         <FAQ />

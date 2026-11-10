@@ -7,7 +7,7 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [tier, setTier] = useState('discovery');
+  const [tier, setTier] = useState('masterclass');
 
   const [emailError, setEmailError] = useState(false);
   const [step, setStep] = useState('form'); // 'form', 'payment', 'success'
@@ -22,7 +22,7 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-      setTier(selectedTier || 'discovery');
+      setTier(selectedTier || 'masterclass');
       setStep('form');
       setIsProcessing(false);
       setName('');
@@ -86,7 +86,7 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
         setIsProcessing(false);
       }
     } else {
-      const amount = tier === 'basic' ? 299 : 1298;
+      const amount = 49;
       try {
         const response = await fetch(`${API_BASE_URL}/api/payment/create-order`, {
           method: 'POST',
@@ -120,15 +120,13 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
 
 
   const getTierPrice = () => {
-    if (tier === 'basic') return '₹299';
-    if (tier === 'advanced') return '₹1298';
-    return 'Free';
+    if (tier === 'discovery') return 'Free';
+    return '₹49';
   };
 
   const getTierTitle = () => {
-    if (tier === 'basic') return 'Basic Course (4 Days)';
-    if (tier === 'advanced') return 'Advanced Course (12 Days)';
-    return 'Discovery Consultation Call';
+    if (tier === 'discovery') return 'Discovery Consultation Call';
+    return 'Hair Serum Making Masterclass (2 Days)';
   };
 
   return (
@@ -140,7 +138,7 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
       aria-labelledby="modal-title"
     >
       <div
-        className="glass-card w-full max-w-lg p-6 sm:p-8 rounded-3xl relative my-auto max-h-[90vh] overflow-y-auto transition-all transform scale-100 opacity-100 duration-300 shadow-2xl"
+        className="glass-card w-full max-w-lg p-6 sm:p-8 rounded-3xl relative my-auto max-h-[90vh] overflow-y-auto transition-all transform scale-100 opacity-100 duration-300 shadow-2xl border-2 border-primary/20"
         onClick={(e) => e.stopPropagation()} // Prevent close on modal body click
       >
         <button
@@ -155,8 +153,14 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
         {/* STEP 1: LEAD FORM */}
         {step === 'form' && (
           <div id="form-content">
-            <h3 id="modal-title" className="font-display-lg text-headline-md text-on-surface mb-2">Reserve Your Spot</h3>
-            <p className="text-body-md text-on-surface-variant mb-6">Enter your details below to schedule your call or enroll in the workshop.</p>
+            <h3 id="modal-title" className="font-display-lg text-headline-md text-on-surface mb-2">
+              {tier === 'discovery' ? 'Book a Free Call' : 'Enroll in Masterclass'}
+            </h3>
+            <p className="text-body-md text-on-surface-variant mb-6">
+              {tier === 'discovery'
+                ? 'Enter your details below to schedule your consultation call with our team.'
+                : 'Enter your details below to secure your spot in the 2-Day Hair Serum Making Masterclass at just ₹49.'}
+            </p>
 
             {apiError && (
               <div className="p-4 mb-4 bg-error-container text-on-error-container rounded-2xl text-sm font-semibold flex items-start gap-3 border border-error/20 animate-fadeIn">
@@ -176,25 +180,23 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className="w-full px-4 py-3 bg-surface border border-outline-variant/30 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-60"
-                  placeholder="Amara Singh"
+                  placeholder="e.g. Ananya Sharma"
                 />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-on-surface-variant mb-1">Email Address <span className="font-normal text-on-surface-variant/60">(Optional)</span></label>
                 <input
-
+                  type="email"
                   id="email"
-
                   disabled={isProcessing}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className={`w-full px-4 py-3 bg-surface border rounded-xl focus:outline-none focus:ring-1 transition-all disabled:opacity-60 `}
-                  placeholder="amara@example.com"
+                  className={`w-full px-4 py-3 bg-surface border rounded-xl focus:outline-none focus:ring-1 transition-all disabled:opacity-60 border-outline-variant/30`}
+                  placeholder="ananya@example.com"
                 />
-
               </div>
               <div>
-                <label htmlFor="phone" className="block text-sm font-semibold text-on-surface-variant mb-1">Phone Number</label>
+                <label htmlFor="phone" className="block text-sm font-semibold text-on-surface-variant mb-1">Phone / WhatsApp Number</label>
                 <input
                   type="tel"
                   id="phone"
@@ -207,12 +209,13 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
                 />
               </div>
               <div>
-                <label htmlFor="course-tier" className="block text-sm font-semibold text-on-surface-variant mb-1">Select Course Path</label>
+                <label htmlFor="course-tier" className="block text-sm font-semibold text-on-surface-variant mb-1">Selected Plan</label>
                 {selectedTier ? (
-                  <div className="w-full px-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded-xl text-on-surface font-semibold">
-                    {tier === 'discovery' && 'Book a Call'}
-                    {tier === 'basic' && '4 Days - ₹299'}
-                    {tier === 'advanced' && '12 Days - ₹1298'}
+                  <div className="w-full px-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded-xl text-on-surface font-semibold flex justify-between items-center">
+                    <span>
+                      {tier === 'discovery' ? 'Book a Discovery Call' : 'Hair Serum Masterclass (2 Days)'}
+                    </span>
+                    <span className="text-primary font-bold">{getTierPrice()}</span>
                   </div>
                 ) : (
                   <select
@@ -222,9 +225,8 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
                     onChange={(e) => setTier(e.target.value)}
                     className="w-full px-4 py-3 bg-surface border border-outline-variant/30 rounded-xl focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all disabled:opacity-60"
                   >
-                    <option value="discovery">Book a Call</option>
-                    <option value="basic">4 Days - ₹299</option>
-                    <option value="advanced">12 Days - ₹1298</option>
+                    <option value="masterclass">Hair Serum Masterclass (2 Days) - ₹49</option>
+                    <option value="discovery">Book a Free Call</option>
                   </select>
                 )}
               </div>
@@ -240,15 +242,25 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
                   <option value="instagram">Instagram</option>
                   <option value="facebook">Facebook</option>
                   <option value="youtube">YouTube</option>
+                  <option value="whatsapp">WhatsApp</option>
                   <option value="google">Google Search</option>
                   <option value="friends">Friends / Family</option>
                   <option value="other">Other</option>
                 </select>
               </div>
+
+              {/* Includes pill inside modal */}
+              {tier !== 'discovery' && (
+                <div className="p-3 bg-primary-container/10 border border-primary-container/30 rounded-xl text-xs text-on-surface flex items-center gap-2">
+                  <span className="material-symbols-outlined text-primary text-[18px]">card_giftcard</span>
+                  <span>Includes: Material Guide + Recipe PDF + Certificate</span>
+                </div>
+              )}
+
               <button
                 type="submit"
                 disabled={isProcessing}
-                className="w-full mt-6 bg-primary text-on-primary py-4 rounded-full font-label-md text-label-md btn-primary-shadow hover:scale-102 transition-all flex items-center justify-center gap-2 disabled:opacity-75 disabled:hover:scale-100"
+                className="w-full mt-6 bg-primary text-on-primary py-4 rounded-full font-label-md text-label-md font-bold btn-primary-shadow hover:scale-102 transition-all flex items-center justify-center gap-2 disabled:opacity-75 disabled:hover:scale-100"
               >
                 {isProcessing ? (
                   <>
@@ -259,7 +271,7 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
                     {tier === 'discovery' ? 'Submitting Booking...' : 'Creating Order...'}
                   </>
                 ) : (
-                  tier === 'discovery' ? 'Submit Booking' : 'Continue to Payment'
+                  tier === 'discovery' ? 'Submit Booking' : 'Continue to Payment • ₹49'
                 )}
               </button>
             </form>
@@ -286,22 +298,22 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
         {/* STEP 3: SUCCESS OR CONFIRMATION SCREEN */}
         {step === 'success' && (
           <div id="success-content" className="text-center py-8">
-            <div className="w-16 h-16 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="material-symbols-outlined text-[40px]">check_circle</span>
+            <div className="w-16 h-16 bg-tertiary-fixed text-on-tertiary-fixed-variant rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
+              <span className="material-symbols-outlined text-[40px] text-tertiary">check_circle</span>
             </div>
 
             {tier === 'discovery' ? (
               <>
                 <h3 className="font-display-lg text-headline-md text-on-surface mb-2">Call Booked!</h3>
                 <p className="text-body-md text-on-surface-variant mb-6">
-                  Thank you, <span className="font-bold">{name}</span>. We have scheduled your consulting slot.{email.trim() ? <> A validation confirmation has been sent to <span className="font-semibold">{email}</span>.</> : <> We will contact you on your phone number.</>}
+                  Thank you, <span className="font-bold">{name}</span>. We have scheduled your consultation slot.{email.trim() ? <> A confirmation has been sent to <span className="font-semibold">{email}</span>.</> : <> We will reach out to your phone number shortly.</>}
                 </p>
               </>
             ) : (
               <>
                 <h3 className="font-display-lg text-headline-md text-on-surface mb-2">Enrollment Confirmed!</h3>
                 <p className="text-body-md text-on-surface-variant mb-6">
-                  Payment of <span className="font-bold text-primary">{getTierPrice()}</span> received. Welcome to <span className="font-semibold">Lemon Academia</span>, <span className="font-bold">{name}</span>!{email.trim() ? <> Your course onboarding credentials and material lists have been sent to <span className="font-semibold">{email}</span>.</> : <> We will share your course details on your phone number.</>}
+                  Payment of <span className="font-bold text-primary">{getTierPrice()}</span> received. Welcome to <span className="font-semibold">Lemon Academia</span>, <span className="font-bold">{name}</span>!{email.trim() ? <> Your masterclass access link, Material Guide, and Recipe PDF have been sent to <span className="font-semibold">{email}</span>.</> : <> We will share your course access details on your phone number.</>}
                 </p>
 
                 {orderId && (
@@ -322,8 +334,8 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
               </>
             )}
 
-            <a href="https://chat.whatsapp.com/ES0QItGUOS1CmuhyLkIFZ7" target="_blank" rel="noopener noreferrer" className="inline-block bg-primary text-on-primary px-8 py-3 rounded-full font-label-md text-label-md btn-primary-shadow hover:scale-105 transition-all">
-              Join WhatsApp Group
+            <a href="https://chat.whatsapp.com/ES0QItGUOS1CmuhyLkIFZ7" target="_blank" rel="noopener noreferrer" className="inline-block bg-primary text-on-primary px-8 py-3 rounded-full font-label-md text-label-md font-bold btn-primary-shadow hover:scale-105 transition-all">
+              Join WhatsApp Batch Group
             </a>
           </div>
         )}

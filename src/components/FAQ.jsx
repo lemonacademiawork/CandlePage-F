@@ -2,20 +2,28 @@ import React, { useState } from 'react';
 
 const faqs = [
   {
-    q: 'Do I need prior experience?',
-    a: 'Absolutely not. Our masterclass is designed to take you from the very basics (Phase 1) all the way to advanced techniques (Phase 2 & 3).'
+    q: 'Do I need prior cosmetic formulation experience?',
+    a: 'Not at all! The masterclass is designed for complete beginners as well as beauty enthusiasts. On Day 1, we start with carrier & essential oils fundamentals, and on Day 2, we guide you through advance actives and preservation step by step.'
   },
   {
-    q: 'What materials are required?',
-    a: "You'll need wax, wicks, fragrance oils, and some basic kitchen tools. We provide a comprehensive list of recommended kits and suppliers within the first module."
+    q: 'What materials and ingredients will I need?',
+    a: 'You will need basic carrier oils (e.g., jojoba, argan), essential oils (e.g., rosemary), active ingredients, and glass dropper bottles. Upon enrollment, you receive our complete Material Guide with exact links to trusted, cosmetic-grade ingredient vendors in India.'
   },
   {
-    q: 'How long do I have access?',
-    a: 'Once you enroll, you have lifetime access to the curriculum, including any future updates and community discussions.'
+    q: 'What does the ₹49 masterclass package include?',
+    a: 'The ₹49 fee covers the complete 2-day live training, step-by-step hands-on formulation of 4 serums, the comprehensive Recipe PDF with exact measurements, Material Sourcing Guide, and your verified Lemon Academia Certificate of Completion.'
   },
   {
-    q: 'Is there a certification?',
-    a: 'Yes! Upon completing the 12-day curriculum and submitting your final project, you will receive a digital Lemon Academia Certificate.'
+    q: 'What serums will we make during the sessions?',
+    a: 'You will make 4 serums in total: on Day 1, an Anti-Frizz & Shine Serum and a Damage Repair Serum; on Day 2, an Anti-Hairfall & Regrowth Serum (Rosemary actives) and an Advance Scalp Treatment Serum.'
+  },
+  {
+    q: 'Will I receive a certificate?',
+    a: 'Yes! Upon completing the 2-day masterclass, you will receive an official, verifiable digital Lemon Academia Certificate of Completion.'
+  },
+  {
+    q: 'What if I miss a live session?',
+    a: 'No worries! All enrolled students receive access to session recordings along with the full Recipe PDF so you can learn and formulate at your own pace.'
   }
 ];
 
@@ -27,9 +35,15 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-section-gap px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto bg-surface-container-low/30 rounded-3xl reveal" id="faq">
-      <h2 className="font-display-lg text-display-lg-mobile md:text-headline-lg text-on-surface text-center mb-12">Frequently Asked Questions</h2>
-      <div className="space-y-4 px-4">
+    <section className="py-section-gap px-margin-mobile md:px-margin-desktop max-w-4xl mx-auto bg-surface-container-low/40 rounded-3xl reveal border border-outline-variant/20" id="faq">
+      <div className="text-center mb-10">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-container/15 text-on-primary-container text-xs font-bold uppercase tracking-wider mb-3 border border-primary-container/30">
+          <span className="material-symbols-outlined text-[16px] text-primary">help</span>
+          Got Questions?
+        </div>
+        <h2 className="font-display-lg text-display-lg-mobile md:text-headline-lg text-on-surface">Frequently Asked Questions</h2>
+      </div>
+      <div className="space-y-4 px-2 md:px-6">
         {faqs.map((faq, idx) => {
           const isOpen = openIdx === idx;
           return (
@@ -38,9 +52,9 @@ export default function FAQ() {
                 onClick={() => toggle(idx)} 
                 className="w-full p-6 flex justify-between items-center text-left focus:outline-none group"
               >
-                <span className="font-label-md text-body-lg text-on-surface group-hover:text-primary transition-colors">{faq.q}</span>
+                <span className="font-label-md text-body-lg text-on-surface group-hover:text-primary transition-colors font-semibold pr-4">{faq.q}</span>
                 <span 
-                  className="material-symbols-outlined text-primary transition-transform duration-300"
+                  className="material-symbols-outlined text-primary transition-transform duration-300 shrink-0"
                   style={{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
                 >
                   expand_more
@@ -49,7 +63,7 @@ export default function FAQ() {
               <div 
                 className="transition-all duration-300 ease-in-out overflow-hidden"
                 style={{ 
-                  maxHeight: isOpen ? '200px' : '0px', 
+                  maxHeight: isOpen ? '240px' : '0px', 
                   opacity: isOpen ? 1 : 0 
                 }}
               >

@@ -12,7 +12,7 @@ export default function Footer() {
               </div>
               <span className="font-display-lg text-headline-md text-primary">Lemon Academia</span>
             </div>
-            <p className="text-on-surface-variant text-sm leading-relaxed">Handcrafted with passion for the modern artist. Master the art of luxury candle making.</p>
+            <p className="text-on-surface-variant text-sm leading-relaxed">Craft your own hair care magic. Master the science and craft of luxury, chemical-free hair serum formulation with Lemon Academia.</p>
           </div>
           <div>
             <h4 className="font-bold text-on-surface mb-6">Course</h4>
