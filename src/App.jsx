@@ -54,7 +54,7 @@ export default function App() {
       {/* WhatsApp Floating Action Button */}
       <a
         className="whatsapp-float bg-[#25D366] text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform active:scale-95 flex items-center justify-center btn-primary-shadow"
-        href="https://chat.whatsapp.com/ES0QItGUOS1CmuhyLkIFZ7"
+        href="https://wa.me/917905713069"
         target="_blank"
         aria-label="Chat with us on WhatsApp"
         rel="noopener noreferrer"

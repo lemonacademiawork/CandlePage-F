@@ -18,9 +18,10 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
   const [orderData, setOrderData] = useState(null);
 
 
-  // Sync states when modal opens
+  // Sync states when modal opens & lock background scroll
   useEffect(() => {
     if (isOpen) {
+      document.body.style.overflow = 'hidden';
       setTier(selectedTier || 'discovery');
       setStep('form');
       setIsProcessing(false);
@@ -33,7 +34,13 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
       setOrderId('');
       setSource('instagram');
       setOrderData(null);
+    } else {
+      document.body.style.overflow = '';
     }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isOpen, selectedTier]);
 
   if (!isOpen) return null;
@@ -126,14 +133,14 @@ export default function BookingModal({ isOpen, onClose, selectedTier }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-on-background/40 backdrop-blur-sm transition-opacity"
+      className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-on-background/50 backdrop-blur-sm transition-opacity overflow-y-auto"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       <div
-        className="glass-card w-full max-w-lg p-8 rounded-3xl relative transition-all transform scale-100 opacity-100 duration-300"
+        className="glass-card w-full max-w-lg p-6 sm:p-8 rounded-3xl relative my-auto max-h-[90vh] overflow-y-auto transition-all transform scale-100 opacity-100 duration-300 shadow-2xl"
         onClick={(e) => e.stopPropagation()} // Prevent close on modal body click
       >
         <button

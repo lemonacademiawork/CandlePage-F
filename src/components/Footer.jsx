@@ -25,7 +25,7 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-on-surface mb-6">Support</h4>
             <ul className="space-y-4 text-sm text-on-surface-variant">
-              <li><a className="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+              <li><a className="hover:text-primary transition-colors" href="https://wa.me/917905713069" target="_blank" rel="noopener noreferrer">Contact Us</a></li>
               <li><a className="hover:text-primary transition-colors" href="#">Help Center</a></li>
               <li><a className="hover:text-primary transition-colors" href="#faq">FAQ</a></li>
             </ul>
