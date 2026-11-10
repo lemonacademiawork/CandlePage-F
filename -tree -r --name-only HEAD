@@ -1,0 +1,28 @@
+[33mcommit bdf6eee21a6713370bf2330b329333e327a81dda[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Sejal Agarwal <sejala963@gmail.com>
+Date:   Tue Nov 10 12:02:17 2026 +0530
+
+    added hairserum frontend
+
+ dist/assets/index-BNS_wWZ2.css                     |   2 [32m+[m
+ .../{index-CO-B6ANV.js => index-CGSLPaIN.js}       |   2 [32m+[m[31m-[m
+ dist/assets/index-DY6enSNg.css                     |   2 [31m-[m
+ dist/images/serum-hero.jpg                         | Bin [31m0[m -> [32m216408[m bytes
+ dist/index.html                                    | 176 [32m+++++++[m[31m--------[m
+ dist/videos/CANDLE VIDEO .mp4                      | Bin [31m59148218[m -> [32m0[m bytes
+ index.html                                         |  34 [32m++[m[31m-[m
+ node_modules/.vite/deps/_metadata.json             |  16 [32m+[m[31m-[m
+ public/images/serum-hero.jpg                       | Bin [31m0[m -> [32m216408[m bytes
+ public/videos/CANDLE VIDEO .mp4                    | Bin [31m59148218[m -> [32m0[m bytes
+ src/App.jsx                                        |   4 [32m+[m[31m-[m
+ src/components/BookingModal.jsx                    |  82 [32m++++[m[31m---[m
+ src/components/Certificate.jsx                     |  20 [32m+[m[31m-[m
+ src/components/CourseModules.jsx                   | 251 [32m++++++++++++++[m[31m-------[m
+ src/components/FAQ.jsx                             |  42 [32m++[m[31m--[m
+ src/components/Footer.jsx                          |   2 [32m+[m[31m-[m
+ src/components/Hero.jsx                            | 127 [32m+++++++++[m[31m--[m
+ src/components/Navbar.jsx                          |  10 [32m+[m[31m-[m
+ src/components/Reviews.jsx                         |  55 [32m+++[m[31m--[m
+ src/components/VideoSection.jsx                    |  12 [31m-[m
+ src/components/WhyJoin.jsx                         |  56 [32m+++[m[31m--[m
+ 21 files changed, 551 insertions(+), 342 deletions(-)
